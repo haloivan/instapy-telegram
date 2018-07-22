@@ -18,8 +18,17 @@ $ git clone https://github.com/haloivan/instapy-telegram.git
 ```
 
 #### Setting
-- open file config.ini
-- insert your telgram token, instagram username and password
+- open file config.ini in folder "teledata"
+- insert your telegram token, instagram username (without @) and password
+- open and edit file instapytelegrampy
+- find this code and change all "x" with your favorite hashtag (without #)
+```sh
+tag_1 = ['x', 'x', 'x', 'x', 'x']
+tag_2 = ['x', 'x', 'x', 'x', 'x']
+tag_3 = ['x', 'x', 'x', 'x', 'x']
+tag_4 = ['x', 'x', 'x', 'x', 'x']
+```
+- save
 
 #### Run
 ```sh
