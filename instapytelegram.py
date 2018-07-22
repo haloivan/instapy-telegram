@@ -191,10 +191,10 @@ def tag(bot, update, args):
             update.message.reply_text('menyukai tagar secara automatis '
                                       'paling banyak ' + like +
                                       ' like tiap tagar.')
-            tag_1 = ['indonesia', 'jakarta', 'tulungagung', 'kediri', 'malang']
-            tag_2 = ['landscape', 'nature', 'mountain', 'sea', 'alam']
-            tag_3 = ['hardstyle', 'flp', 'qdance', 'defqon1', 'hardwithstyle']
-            tag_4 = ['lfl', 'fff', 'l4l', 'likeforlike', 'likeforfollow']
+            tag_1 = ['x', 'x', 'x', 'x', 'x']
+            tag_2 = ['x', 'x', 'x', 'x', 'x']
+            tag_3 = ['x', 'x', 'x', 'x', 'x']
+            tag_4 = ['x', 'x', 'x', 'x', 'x']
             random.seed(time.time())
             xtag = ['#'+tag_1[random.randint(0, len(tag_1)-1)],
                     '#'+tag_2[random.randint(0, len(tag_2)-1)],
