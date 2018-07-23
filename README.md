@@ -9,7 +9,10 @@ This project is my learning project with telegram bot using python language.
 ### You must install InstaPy project on your ubuntu server/pc
 <a href='https://github.com/timgrossmann/InstaPy/blob/master/docs/How_To_DO_Ubuntu_on_Digital_Ocean.md'>Click Here for The Tutorial</a>
 
-### Please Follow This Step!!! for installing instapy-telegram project
+
+## Tutorial Install
+
+**Please Follow This Step!!! for installing instapy-telegram project**
 ```sh
 $ pip install --upgrade pip
 $ pip install python-telegram-bot
@@ -38,6 +41,8 @@ $ cd /root/InstaPy && /usr/bin/python /root/InstaPy/instapytelegram.py
 ```
 
 ### Noted
-Every you updating this repo please do the last step in installing this project tutorial, for work properly.
+Every updating this repo, please do the last step in [Tutorial Install](#tutorial-install) this project, for work properly.
 
 Have issue with this project? come write <a href='https://github.com/haloivan/instapy-telegram/issues'>here</a>. I will help you as much as possible.
+
+Always check upcoming new features <a href='https://github.com/haloivan/instapy-telegram/projects/1'>here</a>.
