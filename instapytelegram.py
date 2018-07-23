@@ -15,6 +15,7 @@ import datetime
 import random
 import sys
 import os
+import getpass
 
 from telegram.ext import Updater, CommandHandler, Job, CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
@@ -24,7 +25,8 @@ from pprint import pprint
 
 # Folder
 global directory
-directory = ('/root/InstaPy/teledata/')
+usersys = getpass.getuser()
+directory = ('/' + usersys + '/InstaPy/instapy-telegram/teledata/')
 if not os.path.exists(directory):
     os.makedirs(directory)
 
@@ -35,13 +37,6 @@ config.read(directory+'config.ini')
 telegram_token = config.get('telegram', 'token')
 insta_username = config.get('instapy', 'username')
 insta_password = config.get('instapy', 'password')
-
-
-# Get allowed id from chatbot
-allowed_id = []
-with open(directory+'allowed-id.txt') as f:
-    for line in f:
-        allowed_id.append(line.strip("\n").replace('\r', ''))
 
 
 global banned
