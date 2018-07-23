@@ -20,9 +20,9 @@ $ cp /$usersys/InstaPy/instapy-telegram/instapytelegram.py /$usersys/InstaPy/ins
 ```
 
 #### Setting
-- open file config.ini in folder "teledata"
+- open file config.ini in folder instapy-telegram --> teledata
 - insert your telegram token, instagram username (without @) and password
-- open and edit file instapytelegrampy
+- open and edit file instapytelegram.py (in InstaPy Folder)
 - find this code and change all "x" with your favorite hashtag (without #)
 ```sh
 tag_1 = ['x', 'x', 'x', 'x', 'x']
