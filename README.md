@@ -10,14 +10,13 @@ This project is my learning project with telegram bot using python language.
 <a href='https://github.com/timgrossmann/InstaPy/blob/master/docs/How_To_DO_Ubuntu_on_Digital_Ocean.md'>Click Here for The Tutorial</a>
 
 ### Please Follow This Step!!! for installing instapy-telegram project
-Dont use manual git clone!!!
 ```sh
 $ pip install --upgrade pip
 $ pip install python-telegram-bot
-$ cd /root/InstaPy
-$ git init
-$ git remote add origin https://github.com/haloivan/instapy-telegram.git
-$ git pull origin master
+$ usersys=$(whoami)
+$ cd /$usersys/InstaPy
+$ git clone https://github.com/haloivan/instapy-telegram.git
+$ cp /$usersys/InstaPy/instapy-telegram/instapytelegram.py /$usersys/InstaPy/instapytelegram.py
 ```
 
 #### Setting
