@@ -36,3 +36,8 @@ tag_4 = ['x', 'x', 'x', 'x', 'x']
 ```sh
 $ cd /root/InstaPy && /usr/bin/python /root/InstaPy/instapytelegram.py
 ```
+
+### Noted
+Every you updating this repo please do the last step in installing this project tutorial, for work properly.
+
+Have issue with this project? come write <a href='https://github.com/haloivan/instapy-telegram/issues'>here</a>. I will help you as much as possible.
