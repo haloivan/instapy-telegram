@@ -33,9 +33,20 @@ tag_4 = ['x', 'x', 'x', 'x', 'x']
 - save
 
 #### Run
+In InstaPy Folder
 ```sh
-$ cd /root/InstaPy && /usr/bin/python /root/InstaPy/instapytelegram.py
+$ python ./instapytelegram.py
 ```
+Or you can use nohup for no kill the process if you leave or close your server (just for server not recomended for PC)
+
+#### Feature
+| Command | Parameters              | Description                                      |
+|---------|-------------------------|--------------------------------------------------|
+| /start  |							| Start the bot 								   |
+| /help	  |							| get help										   |
+| /feed	  | amount must >0          | Liking your feed with certain number of likes    |
+| /tag    | auto amount must >0     | Liking hashtag with hashtag [Setting](#setting)  |
+|         | your_hashtag amount >0  | Like your specific hastag                        |   
 
 ### Noted
 Every updating this repo, please do the last step in [Tutorial Install](#tutorial-install) this project, for work properly.
