@@ -44,8 +44,8 @@ Or you can use nohup for no kill the process if you leave or close your server (
 |---------|-------------------------|--------------------------------------------------|
 | /start  |							| Start the bot 								   |
 | /help	  |							| get help										   |
-| /feed	  | amount must >0          | Liking your feed with certain number of likes    |
-| /tag    | auto amount must >0     | Liking hashtag with hashtag [Setting](#setting)  |
+| /feed	  | amount > 0              | Liking your feed with certain number of likes    |
+| /tag    | auto amount > 0         | Liking hashtag with hashtag [Setting](#setting)  |
 |         | your_hashtag amount >0  | Like your specific hastag                        |   
 
 ### Noted
