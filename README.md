@@ -35,7 +35,7 @@ tag_4 = ['x', 'x', 'x', 'x', 'x']
 #### Run
 In InstaPy Folder
 ```sh
-$ python ./instapytelegram.py
+$ python instapytelegram.py
 ```
 Or you can use nohup for no kill the process if you leave or close your server (just for server not recomended for PC)
 
