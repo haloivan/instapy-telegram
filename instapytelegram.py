@@ -15,18 +15,17 @@ import datetime
 import random
 import sys
 import os
-import getpass
 
+from instatelemod import setting, skipmod, langmod
 from telegram.ext import Updater, CommandHandler, Job, CallbackQueryHandler
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from instapy import InstaPy
 from configparser import SafeConfigParser
 from pprint import pprint
 
 # Folder
 global directory
-usersys = getpass.getuser()
-directory = ('/' + usersys + '/InstaPy/instapy-telegram/teledata/')
+dirutama = setting.dirutama()
+directory = (dirutama + '/teledata/')
 if not os.path.exists(directory):
     os.makedirs(directory)
 
@@ -39,31 +38,18 @@ insta_username = config.get('instapy', 'username')
 insta_password = config.get('instapy', 'password')
 
 
-global banned
-banned = []
-with open(directory+'banned.txt') as f:
-            for line in f:
-                banned.append(line.strip("\n").replace('\r', ''))
-
-
 def help(bot, update):
-    update.message.reply_text('Gunakan '
-                              '/feed untuk like feed instagram'
-                              '\nGunakan /tags untuk like '
-                              'beberapa tags pilihan')
+    update.message.reply_text(langmod.pesan('help', 'help'))
 
 
 def feed(bot, update, args):
     try:
-
         data = {'data': args[0]}
         chat_data = data
         dFeed = chat_data['data']
 
         if dFeed > '0' and dFeed != '':
-            update.message.reply_text('Instagram auto feed liker'
-                                      ' sedang di proses tunggu '
-                                      'sebentar...')
+            update.message.reply_text(langmod.pesan('feed', 'main'))
             start = datetime.datetime.now().replace(microsecond=0)
             session = InstaPy(username=insta_username,
                               password=insta_password,
@@ -78,7 +64,7 @@ def feed(bot, update, args):
                                             min_followers=30,
                                             min_following=25)
             session.set_do_comment(False, percentage=10)
-            session.set_dont_like(banned)
+            session.set_dont_like(skipmod.banfile())
             session.like_by_feed(amount=int(dFeed),
                                  randomize=False,
                                  unfollow=False,
@@ -112,18 +98,13 @@ def feed(bot, update, args):
                                       .format(end-start))
         elif dFeed == 'help':
 
-            update.message.reply_text('help feed')
+            update.message.reply_text(langmod.pesan('feed', 'help'))
 
     except (IndexError, ValueError):
-        update.message.reply_text('ketik \"/feed help\" untuk melihat'
-                                  ' opsi yang tersedia')
+        update.message.reply_text(langmod.pesan('feed', 'help'))
 
 
 def tag(bot, update, args):
-    helpmessage = ('ketik perintah /tag<spasi>tagarnya harus berupa'
-                   ' huruf atau huruf dengan angka tanpa tanda '
-                   '\"#\"<spasi>jumlahnya (harus angka '
-                   'lebih dari 0)')
     try:
 
         data = {'tags': args[0], 'like': args[1]}
@@ -132,12 +113,11 @@ def tag(bot, update, args):
         like = chat_data['like']
 
         if tags == 'help':
-            update.message.reply_text(helpmessage)
+            update.message.reply_text(langmod.pesan('tag', 'help'))
 
         elif tags != 'auto' and like > '0':
 
-            update.message.reply_text('menyukai https://instagram.com/explore/tags/' + tags +
-                                      ' paling banyak ' + like + ' like.')
+            update.message.reply_text(langmod.info('tag', 'main', tags, like))
             session = InstaPy(username=insta_username,
                               password=insta_password,
                               headless_browser=True,
@@ -152,7 +132,7 @@ def tag(bot, update, args):
                                             min_followers=30,
                                             min_following=25)
             session.set_do_comment(False, percentage=10)
-            session.set_dont_like(banned)
+            session.set_dont_like(skipmod.banfile())
             session.like_by_tags([tags], amount=int(like))
             session.end()
             with open('/root/InstaPy/logs/general.log', "r") as f:
@@ -210,7 +190,7 @@ def tag(bot, update, args):
                                             min_followers=30,
                                             min_following=25)
             session.set_do_comment(False, percentage=10)
-            session.set_dont_like(banned)
+            session.set_dont_like(skipmod.banfile())
             update.message.reply_text('menyukai tagar ' + xtag[0])
             session.like_by_tags([xtag[0]], amount=int(like), interact=False)
             session.end()
@@ -249,7 +229,7 @@ def tag(bot, update, args):
                                             min_followers=30,
                                             min_following=25)
             session.set_do_comment(False, percentage=10)
-            session.set_dont_like(banned)
+            session.set_dont_like(skipmod.banfile())
             update.message.reply_text('menyukai tagar ' + xtag[1])
             session.like_by_tags([xtag[1]], amount=int(like), interact=False)
             session.end()
@@ -288,7 +268,7 @@ def tag(bot, update, args):
                                             min_followers=30,
                                             min_following=25)
             session.set_do_comment(False, percentage=10)
-            session.set_dont_like(banned)
+            session.set_dont_like(skipmod.banfile())
             update.message.reply_text('menyukai tagar ' + xtag[2])
             session.like_by_tags([xtag[2]], amount=int(like), interact=False)
             session.end()
@@ -327,7 +307,7 @@ def tag(bot, update, args):
                                             min_followers=30,
                                             min_following=25)
             session.set_do_comment(False, percentage=10)
-            session.set_dont_like(banned)
+            session.set_dont_like(skipmod.banfile())
             update.message.reply_text('menyukai tagar ' + xtag[3])
             session.like_by_tags([xtag[3]], amount=int(like), interact=False)
             session.end()
@@ -363,23 +343,17 @@ def tag(bot, update, args):
 
 def user(bot, update, args):
     query = update.callback_query
-    helpmessage = ('ketik perintah /user<spasi>tanpa tanda '
-                   '\"@\"<spasi>jumlah pic yang akan dilike '
-                   '(harus angka lebih dari 0)')
     try:
-
         data = {'userig': args[0], 'like': args[1]}
         chat_data = data
         userig = chat_data['userig']
         like = chat_data['like']
 
         if userig == 'help':
-            update.message.reply_text(helpmessage)
+            update.message.reply_text(langmod.pesan('user', 'help'))
 
         elif userig != '' and like > '0':
-            update.message.reply_text('menyukai profil '
-                                      'https://www.instagram.com/' + userig + ' paling '
-                                      'banyak ' + like + ' like.')
+            update.message.reply_text(langmod.info('user', 'info', userig, like))
             start = datetime.datetime.now().replace(microsecond=0)
             session = InstaPy(username=insta_username,
                               password=insta_password,
@@ -394,7 +368,7 @@ def user(bot, update, args):
                                             min_followers=30,
                                             min_following=25)
             session.set_do_comment(False, percentage=10)
-            session.set_dont_like(banned)
+            session.set_dont_like(skipmod.banfile())
             session.set_do_like(True, percentage=100)
             session.interact_by_users([userig],
                                       amount=int(like),
@@ -428,7 +402,7 @@ def user(bot, update, args):
                                       .format(end-start))
 
     except (IndexError, ValueError):
-        update.message.reply_text(helpmessage)
+        update.message.reply_text(langmod.pesan('user', 'help'))
 
 
 def main():
